@@ -3,6 +3,23 @@ import express from "express";
 const app = express();
 
 let fruits = [];
+let songs = [
+  {
+    songName: 'perfect',
+    artist: "Ed Sheeran",
+    rating: 5
+  },
+  {
+    songName: 'Shape of you',
+    artist: "Ed Sheeran",
+    rating: 4
+  }
+]
+app.get('/songs', (req, res) => {
+  let rating = req.query.rating;
+  var filtered = songs.filter(p => p.rating == rating);
+  return res.json(filtered)
+})
 
 app.get("/", (req, res) => {
   res.send("Hello world");
